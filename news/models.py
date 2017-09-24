@@ -6,12 +6,12 @@ from wagtail.wagtailadmin.edit_handlers import FieldPanel
 
 from wagtailnews.models import NewsIndexMixin, AbstractNewsItem, AbstractNewsItemRevision
 from wagtailnews.decorators import newsindex
+from amber.models import NavigationPage
 
 @newsindex
-class NewsIndex(NewsIndexMixin, Page):
+class NewsIndex(NewsIndexMixin, NavigationPage):
     # Add extra fields here, as in a normal Wagtail Page class, if required
     newsitem_model = 'NewsItem'
-
 
 class NewsItem(AbstractNewsItem):
     title = models.CharField(max_length=255)

@@ -4,7 +4,9 @@ from wagtail.wagtailcore.models import Page
 from wagtail.wagtailcore.fields import RichTextField
 from wagtail.wagtailadmin.edit_handlers import FieldPanel
 
-class FAQIndex(Page):
+from amber.models import NavigationPage
+
+class FAQIndex(NavigationPage):
     subpage_types = ['faq.FAQCategory']
 
 class FAQCategory(Page):

@@ -17,7 +17,7 @@ class Migration(migrations.Migration):
 
     operations = [
         migrations.CreateModel(
-            name='FAQCategory',
+            name='RootPage',
             fields=[
                 ('page_ptr', models.OneToOneField(auto_created=True, on_delete=django.db.models.deletion.CASCADE, parent_link=True, primary_key=True, serialize=False, to='wagtailcore.Page')),
             ],
@@ -27,22 +27,11 @@ class Migration(migrations.Migration):
             bases=('wagtailcore.page',),
         ),
         migrations.CreateModel(
-            name='FAQIndex',
+            name='SimplePage',
             fields=[
                 ('page_ptr', models.OneToOneField(auto_created=True, on_delete=django.db.models.deletion.CASCADE, parent_link=True, primary_key=True, serialize=False, to='wagtailcore.Page')),
                 ('nav_text', models.TextField(help_text='The text that appears in the navigation element', verbose_name='Navigation Text')),
-            ],
-            options={
-                'abstract': False,
-            },
-            bases=('wagtailcore.page',),
-        ),
-        migrations.CreateModel(
-            name='FAQQuestion',
-            fields=[
-                ('page_ptr', models.OneToOneField(auto_created=True, on_delete=django.db.models.deletion.CASCADE, parent_link=True, primary_key=True, serialize=False, to='wagtailcore.Page')),
-                ('question', wagtail.wagtailcore.fields.RichTextField(verbose_name='Question')),
-                ('answer', wagtail.wagtailcore.fields.RichTextField(verbose_name='Answer')),
+                ('body', wagtail.wagtailcore.fields.RichTextField(blank=True)),
             ],
             options={
                 'abstract': False,
