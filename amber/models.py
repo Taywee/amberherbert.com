@@ -4,9 +4,6 @@ from wagtail.wagtailcore.models import Page
 from wagtail.wagtailcore.fields import RichTextField
 from wagtail.wagtailadmin.edit_handlers import FieldPanel
 
-class RootPage(Page):
-    '''A root page type for the site; this is never seen'''
-
 class NavigationPage(Page):
     '''A page that is put into the navigation menu'''
     nav_text = models.TextField(

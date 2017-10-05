@@ -8,11 +8,6 @@ from wagtailnews.models import NewsIndexMixin, AbstractNewsItem, AbstractNewsIte
 from wagtailnews.decorators import newsindex
 from amber.models import NavigationPage
 
-@newsindex
-class NewsIndex(NewsIndexMixin, NavigationPage):
-    # Add extra fields here, as in a normal Wagtail Page class, if required
-    newsitem_model = 'NewsItem'
-
 class NewsItem(AbstractNewsItem):
     title = models.CharField(max_length=255)
     body = RichTextField()
@@ -27,3 +22,7 @@ class NewsItem(AbstractNewsItem):
 
 class NewsItemRevision(AbstractNewsItemRevision):
     newsitem = models.ForeignKey(NewsItem, related_name='revisions')
+
+@newsindex
+class NewsIndex(NewsIndexMixin, NavigationPage):
+    newsitem_model = NewsItem
