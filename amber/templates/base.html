@@ -1,57 +1,79 @@
-{% load static wagtailcore_tags wagtailuserbar site home %}
+{% load static wagtailcore_tags wagtailimages_tags wagtailuserbar site home %}
 
 <!DOCTYPE html>
 <!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
 <!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
 <!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
 <!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
-    <head>
-        <meta charset="utf-8" />
-        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-        <title>
-            {% block title %}
-                {% if self.seo_title %}{{ self.seo_title }}{% else %}{{ self.title }}{% endif %}
-            {% endblock %}
-            {% block title_suffix %}
-                {% with self.get_site.site_name as site_name %}
-                    {% if site_name %}- {{ site_name }}{% endif %}
-                {% endwith %}
-            {% endblock %}
-        </title>
-        <meta name="description" content="" />
-        <meta name="viewport" content="width=device-width, initial-scale=1" />
+<head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>
+    {% block title %}
+    {% if self.seo_title %}{{ self.seo_title }}{% else %}{{ self.title }}{% endif %}
+    {% endblock %}
+    {% block title_suffix %}
+    {% with self.get_site.site_name as site_name %}
+    {% if site_name %}- {{ site_name }}{% endif %}
+    {% endwith %}
+    {% endblock %}
+  </title>
+  <meta name="description" content="" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
 
-        {# Global stylesheets #}
-        <link rel="stylesheet" type="text/css" href="{% static 'css/amber.css' %}">
+  {# Global stylesheets #}
+  <link rel="stylesheet" type="text/css" href="{% static 'css/amber.css' %}">
 
-        {% block extra_css %}
-            {# Override this in templates to add extra stylesheets #}
-        {% endblock %}
-    </head>
+  {% block extra_css %}
+  {# Override this in templates to add extra stylesheets #}
+  {% endblock %}
+</head>
 
-    <body class="{% block body_class %}{% endblock %}">
-        {% block menu %}
-        {% get_home_page as home_page %}
-        <h1><a href="{% pageurl home_page %}">Amber Herbert</a></h1>
+<body class="{% block body_class %}{% endblock %}">
+  {% block header %}
+  <header>
+    {% get_home_page as home_page %}
+    {% get_banner as banner %}
+    <div id="banner">
+      {% image banner.image fill-800x250 %}
+      <h1><a href="{% pageurl home_page %}">{{ banner.title }}</a></h1>
+    </div>
+  </header>
+  {% endblock %}
 
-        {% get_navigation_items as menu_items %}
-        <nav>
-          <ul>
-            {% for item in menu_items %}
-            <li><a href="{% pageurl item %}">{{ item.title }}</a></li>
-            {% endfor %}
-          </ul>
-        </nav>
-        {% endblock %}
-        {% block content %}{% endblock %}
+  {% block menu %}
+  {% get_navigation_items as menu_items %}
+  <nav>
+    <ul>
+      {% for item in menu_items %}
+      <li><a href="{% pageurl item %}">{{ item.title }}</a></li>
+      {% endfor %}
+    </ul>
+  </nav>
+  {% endblock %}
+  <div id="content">
+    {% block content %}{% endblock %}
 
-        {# Global javascript #}
-        <script type="text/javascript" src="{% static 'js/amber.js' %}"></script>
+    {% block footer %}
+    <footer>
+      <small>
+        Site content copyright © 2017 Amber Herbert.  Site code copyright © 2017
+        Taylor C. Richberger.  Code is
+        <a href="https://github.com/Taywee/amberherbert.com">
+          available publicly under the MIT License
+        </a>.
+      </small>
+    </footer>
+    {% endblock %}
+  </div>
 
-        {% block extra_js %}
-            {# Override this in templates to add extra javascript #}
-        {% endblock %}
+  {# Global javascript #}
+  <script type="text/javascript" src="{% static 'js/amber.js' %}"></script>
 
-        {% wagtailuserbar 'bottom-right' %}
-    </body>
+  {% block extra_js %}
+  {# Override this in templates to add extra javascript #}
+  {% endblock %}
+
+  {% wagtailuserbar 'bottom-right' %}
+</body>
 </html>
