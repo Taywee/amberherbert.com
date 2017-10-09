@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+
+{% load wagtailcore_tags %}
+
+{% block content %}
+<h1>{{ page.title }}</h1>
+
+{% for category in page.get_children %}
+<section>
+  <header>
+    <h2>{{ category.title }}</h2>
+  </header>
+  {% for question in category.get_children %}
+  {% with question=question.specific %}
+  <article>
+    <header>
+      <h4>{{ question.title }}</h4>
+    </header>
+    {{ question.answer|richtext }}
+  </article>
+  {% endwith %}
+  {% endfor %}
+</section>
+{% endfor %}
+{% endblock %}

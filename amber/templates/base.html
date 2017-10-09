@@ -36,7 +36,7 @@
     {% get_banner as banner %}
     <div id="banner">
       {% image banner.image fill-800x250 %}
-      <h1><a href="{% pageurl home_page %}">{{ banner.title }}</a></h1>
+      <h1><a href="{% pageurl home_page %}">{{ banner.text }}</a></h1>
     </div>
   </header>
   {% endblock %}
@@ -46,7 +46,7 @@
   <nav>
     <ul>
       {% for item in menu_items %}
-      <li><a href="{% pageurl item %}">{{ item.title }}</a></li>
+      <li><a href="{% pageurl item %}">{{ item.specific.nav_text }}</a></li>
       {% endfor %}
     </ul>
   </nav>

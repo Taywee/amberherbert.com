@@ -30,6 +30,13 @@ class SimplePage(NavigationPage):
 class Banner(Page):
     '''A banner type, defining the banner of the site.'''
 
+    text = models.CharField(
+        blank=True,
+        null=True,
+        max_length=64,
+        help_text='This is the text that is displayed with the banner image',
+        default='Amber Herbert')
+
     image = models.ForeignKey(
         Image,
         on_delete=models.SET_NULL,
@@ -38,5 +45,6 @@ class Banner(Page):
         related_name='+')
 
     content_panels = Page.content_panels + [
-        ImageChooserPanel('image')
+        FieldPanel('text'),
+        ImageChooserPanel('image'),
         ]

@@ -569,3 +569,10 @@ nav .current_page_item a {
     width: 344px;
     padding-left: 40px;
 }
+
+footer
+{
+    margin-top: 5em;
+    margin-right: 2em;
+    margin-left: 2em;
+}

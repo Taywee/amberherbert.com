@@ -14,11 +14,9 @@ class FAQCategory(Page):
     subpage_types = ['faq.FAQQuestion']
 
 class FAQQuestion(Page):
-    question = RichTextField(verbose_name='Question')
     answer = RichTextField(verbose_name='Answer')
 
     content_panels = Page.content_panels + [
-        FieldPanel('question', classname="full"),
         FieldPanel('answer', classname="full"),
     ]
 

@@ -1,0 +1,9 @@
+{% extends "base.html" %}
+
+{% load wagtailcore_tags %}
+
+{% block content %}
+<h1>{{ newsitem.title }}</h1>
+
+{{ newsitem.body|richtext }}
+{% endblock %}
