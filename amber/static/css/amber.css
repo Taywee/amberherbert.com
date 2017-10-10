@@ -15,8 +15,8 @@ body {
 
 
 h1, h2, h3 {
-    margin: 0;
     padding: 0;
+    margin-bottom: 1em;
 }
 
 p, ol, ul {
@@ -292,7 +292,9 @@ ul.contact li a.icon-rss:before { background: #F2600B; }
 nav {
     background: #888888;
     overflow: hidden;
-    height: 100px;
+    height: 3em;
+    font-size: 2em;
+    margin-bottom: 2em;
 }
 
 nav ul {
