@@ -10,6 +10,7 @@ body {
     font-size: 12pt;
     font-weight: 300;
     color: #363636;
+    text-align: center;
 }
 
 
@@ -340,8 +341,9 @@ nav .current_page_item a {
 
 #content
 {
-    float: right;
     width: 790px;
+    text-align: left;
+    display: inline-block;
 }
 
 /*********************************************************************************/
