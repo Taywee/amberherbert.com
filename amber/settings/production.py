@@ -4,6 +4,8 @@ from .base import *
 
 DEBUG = False
 
+ALLOWED_HOSTS = ['amberherbert.com']
+
 with open('/etc/amberherbert/secret.key', 'r') as file:
     SECRET_KEY = file.read().strip()
 
