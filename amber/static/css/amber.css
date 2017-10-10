@@ -202,10 +202,6 @@ ul.contact li a.icon-rss:before { background: #F2600B; }
 
 /** WRAPPER */
 
-#wrapper {
-    background: #FFFFFF url(images/bg01.png) repeat;
-}
-
 #footer-wrapper
 {
     background: #0F0F0F;
