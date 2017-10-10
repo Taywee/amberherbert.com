@@ -100,7 +100,7 @@ WSGI_APPLICATION = 'amber.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.postgresql_psychopg2',
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
         'NAME': 'amberherbert',
         'USER': 'www',
         'HOST': 'localhost',
