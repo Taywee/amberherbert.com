@@ -4,7 +4,7 @@ from .base import *
 
 DEBUG = False
 
-with open('/etc/secret.key', 'r') as file:
+with open('/etc/amberherbert/secret.key', 'r') as file:
     SECRET_KEY = file.read().strip()
 
 try:
