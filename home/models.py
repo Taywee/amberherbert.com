@@ -9,6 +9,8 @@ from wagtail.wagtailcore.models import Page
 from wagtail.wagtailimages.edit_handlers import ImageChooserPanel
 from wagtail.wagtailimages.models import Image
 
+from .blocks import NavigationItem
+
 class HomePage(Page):
     body = RichTextField(blank=True)
 
@@ -27,12 +29,7 @@ class HomePage(Page):
         related_name='+')
 
     navigation = StreamField(
-        [('item', StructBlock([
-            ('text', CharBlock(
-                required=True, min_length=2, max_length=16)),
-            ('page', PageChooserBlock(required=True)),
-            ],
-            template='home/blocks/navigation_item.html'))],
+        [('item', NavigationItem())],
         blank=True,
         null=True,
         help_text="The list of navigation items")

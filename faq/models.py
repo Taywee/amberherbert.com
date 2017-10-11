@@ -3,19 +3,11 @@ from wagtail.wagtailcore.blocks import CharBlock, ListBlock, StructBlock
 from wagtail.wagtailcore.fields import StreamField
 from wagtail.wagtailcore.models import Page
 
+from .blocks import Category
+
 class FAQIndex(Page):
-    body = StreamField([
-        ('category', StructBlock([
-            ('name', CharBlock(required=True)),
-            ('questions', ListBlock(StructBlock([
-                ('question', CharBlock(required=True)),
-                ('answer', CharBlock(required=True)),
-            ],
-            template='faq/blocks/question.html'
-            ))),
-        ],
-        template='faq/blocks/category.html'
-        ))],
+    body = StreamField(
+        [('category', Category())],
         blank=True,
         null=True)
 
