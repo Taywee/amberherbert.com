@@ -21,3 +21,20 @@ DATABASES = {
         'USER': 'www',
     }
 }
+
+LOGGING = {
+    'version': 1,
+    'disable_existing_loggers': True,
+    'handlers': {
+        'file': {
+            'level': 'WARNING',
+            'class': 'logging.FileHandler',
+            'filename': '/var/log/amberherbert/log',
+        },
+    },
+    'root': {
+        'handlers': ['file'],
+        'level': 'WARNING',
+        'propagate': True,
+    }
+}
