@@ -5,7 +5,10 @@ import os
 import sys
 
 if __name__ == "__main__":
-    os.environ.setdefault("DJANGO_SETTINGS_MODULE", "amber.settings.dev")
+    if os.environ.get('AMBERHERBERT_ENV') == 'PROD':
+        os.environ.setdefault("DJANGO_SETTINGS_MODULE", "amber.settings.production")
+    else:
+        os.environ.setdefault("DJANGO_SETTINGS_MODULE", "amber.settings.dev")
 
     from django.core.management import execute_from_command_line
 
