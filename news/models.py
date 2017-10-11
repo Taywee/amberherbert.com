@@ -6,7 +6,6 @@ from wagtail.wagtailadmin.edit_handlers import FieldPanel
 
 from wagtailnews.models import NewsIndexMixin, AbstractNewsItem, AbstractNewsItemRevision
 from wagtailnews.decorators import newsindex
-from amber.models import NavigationPage
 
 class NewsItem(AbstractNewsItem):
     title = models.CharField(max_length=255)
@@ -24,5 +23,5 @@ class NewsItemRevision(AbstractNewsItemRevision):
     newsitem = models.ForeignKey(NewsItem, related_name='revisions')
 
 @newsindex
-class NewsIndex(NewsIndexMixin, NavigationPage):
+class NewsIndex(NewsIndexMixin, Page):
     newsitem_model = NewsItem

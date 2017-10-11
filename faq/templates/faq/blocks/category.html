@@ -1,0 +1,10 @@
+{% load wagtailcore_tags %}
+
+<section>
+  <header>
+    <h2>{{ value.name }}</h2>
+  </header>
+  {% for question in value.questions %}
+  {% include_block question %}
+  {% endfor %}
+</section>

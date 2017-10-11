@@ -10,4 +10,4 @@ def get_home_page():
     '''Gets the first active home page in the list.  There should only be
     one'''
 
-    return Page.objects.all().live().type(HomePage).first()
+    return HomePage.objects.all().live().first()

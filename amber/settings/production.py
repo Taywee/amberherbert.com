@@ -13,3 +13,11 @@ try:
     from .local import *
 except ImportError:
     pass
+
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'NAME': 'amberherbert',
+        'USER': 'www',
+    }
+}

@@ -1,23 +1,24 @@
-from django.db import models
-
+from wagtail.wagtailadmin.edit_handlers import StreamFieldPanel
+from wagtail.wagtailcore.blocks import CharBlock, ListBlock, StructBlock
+from wagtail.wagtailcore.fields import StreamField
 from wagtail.wagtailcore.models import Page
-from wagtail.wagtailcore.fields import RichTextField
-from wagtail.wagtailadmin.edit_handlers import FieldPanel
 
-from amber.models import NavigationPage
-
-class FAQIndex(NavigationPage):
-    subpage_types = ['faq.FAQCategory']
-
-class FAQCategory(Page):
-    parent_page_types = ['faq.FAQIndex']
-    subpage_types = ['faq.FAQQuestion']
-
-class FAQQuestion(Page):
-    answer = RichTextField(verbose_name='Answer')
+class FAQIndex(Page):
+    body = StreamField([
+        ('category', StructBlock([
+            ('name', CharBlock(required=True)),
+            ('questions', ListBlock(StructBlock([
+                ('question', CharBlock(required=True)),
+                ('answer', CharBlock(required=True)),
+            ],
+            template='faq/blocks/question.html'
+            ))),
+        ],
+        template='faq/blocks/category.html'
+        ))],
+        blank=True,
+        null=True)
 
     content_panels = Page.content_panels + [
-        FieldPanel('answer', classname="full"),
+        StreamFieldPanel('body'),
     ]
-
-    parent_page_types = ['faq.FAQCategory']

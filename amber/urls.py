@@ -10,11 +10,17 @@ from wagtail.wagtaildocs import urls as wagtaildocs_urls
 
 from search import views as search_views
 
-with open('/etc/amberherbert/django-admin.path', 'r') as file:
-    djadmin = file.read().strip()
+try:
+    with open('/etc/amberherbert/django-admin.path', 'r') as file:
+        djadmin = file.read().strip()
+except FileNotFoundError:
+    djadmin = r'^django-admin/'
 
-with open('/etc/amberherbert/wagtail-admin.path', 'r') as file:
-    wtadmin = file.read().strip()
+try:
+    with open('/etc/amberherbert/wagtail-admin.path', 'r') as file:
+        wtadmin = file.read().strip()
+except FileNotFoundError:
+    wtadmin = r'^admin/'
 
 urlpatterns = [
     url(djadmin, include(admin.site.urls)),

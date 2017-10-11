@@ -1,4 +1,4 @@
-{% load static wagtailcore_tags wagtailimages_tags wagtailuserbar site home %}
+{% load static wagtailcore_tags wagtailimages_tags wagtailuserbar home %}
 
 <!DOCTYPE html>
 <!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
@@ -33,23 +33,28 @@
   {% block header %}
   <header>
     {% get_home_page as home_page %}
-    {% get_banner as banner %}
+    {% with home=home_page.specific %}
     <div id="banner">
-      {% image banner.image fill-800x250 %}
-      <h1><a href="{% pageurl home_page %}">{{ banner.text }}</a></h1>
+      {% image home.banner_image fill-800x250 %}
+      <h1><a href="{% pageurl home %}">{{ home.banner_text }}</a></h1>
     </div>
+    {% endwith %}
   </header>
   {% endblock %}
 
   {% block menu %}
-  {% get_navigation_items as menu_items %}
+  {% get_home_page as home_page %}
+  {% with home=home_page.specific %}
   <nav>
     <ul>
-      {% for item in menu_items %}
-      <li><a href="{% pageurl item %}">{{ item.specific.nav_text }}</a></li>
+      {% for item in home.navigation %}
+      <li>
+        {% include_block item %}
+      </li>
       {% endfor %}
     </ul>
   </nav>
+  {% endwith %}
   {% endblock %}
   <div id="content">
     {% block content %}{% endblock %}
