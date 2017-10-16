@@ -44,7 +44,9 @@
     {% with home=home_page.specific %}
     <div id="banner">
       {# image home.banner_image fill-800x250 #}
+      {% if home.banner_text %}
       <h1><a href="{% pageurl home %}">{{ home.banner_text }}</a></h1>
+      {% endif %}
     </div>
     {% endwith %}
   </header>
