@@ -25,3 +25,4 @@ class NewsItemRevision(AbstractNewsItemRevision):
 @newsindex
 class NewsIndex(NewsIndexMixin, Page):
     newsitem_model = NewsItem
+    subpage_types = []
