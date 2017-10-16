@@ -23,6 +23,14 @@
 
   {# Global stylesheets #}
   <link rel="stylesheet" type="text/css" href="{% static 'css/amber.css' %}">
+<style>
+{% get_home_page as home_page %}
+{% with home=home_page.specific %}
+#banner {
+  background: url({{ home.banner_image.file.url }}) no-repeat center/cover;
+}
+{% endwith %}
+</style>
 
   {% block extra_css %}
   {# Override this in templates to add extra stylesheets #}
@@ -35,7 +43,7 @@
     {% get_home_page as home_page %}
     {% with home=home_page.specific %}
     <div id="banner">
-      {% image home.banner_image fill-800x250 %}
+      {# image home.banner_image fill-800x250 #}
       <h1><a href="{% pageurl home %}">{{ home.banner_text }}</a></h1>
     </div>
     {% endwith %}

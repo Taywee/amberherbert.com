@@ -38,3 +38,5 @@ LOGGING = {
         'propagate': True,
     }
 }
+STATIC_ROOT = '/var/lib/www/static'
+MEDIA_ROOT = '/var/lib/www/media'

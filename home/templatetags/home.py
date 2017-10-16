@@ -5,7 +5,7 @@ from home.models import HomePage
 
 register = template.Library()
 
-@register.assignment_tag
+@register.simple_tag
 def get_home_page():
     '''Gets the first active home page in the list.  There should only be
     one'''

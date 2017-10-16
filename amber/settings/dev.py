@@ -24,3 +24,5 @@ DATABASES = {
     }
 }
 
+STATIC_ROOT = 'static'
+MEDIA_ROOT = 'media'

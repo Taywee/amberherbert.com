@@ -279,8 +279,7 @@ ul.contact li a.icon-rss:before { background: #F2600B; }
 #banner 
 {
     overflow: hidden;
-    height: 10em;
-    background-size: cover;
+    height: 15em;
 }
 
 /** MENU */
