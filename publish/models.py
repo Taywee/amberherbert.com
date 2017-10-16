@@ -2,7 +2,7 @@ from django.db import models
 
 from wagtail.wagtailcore.models import Page
 from wagtail.wagtailcore.fields import RichTextField, StreamField
-from wagtail.wagtailadmin.edit_handlers import FieldPanel
+from wagtail.wagtailadmin.edit_handlers import FieldPanel, StreamFieldPanel
 
 from .blocks import Chapter
 
@@ -28,12 +28,19 @@ class PublishedWork(Page):
     and named titles shouldn't be mandatory, but even without named titles, we
     want to be able to link to the chapter.'''
 
-    summary = RichTextField(blank=True)
+    summary = models.TextField(
+        blank=True,
+        null=True,
+        help_text=(
+            "This is shown at the top of the published work's own page and in "
+            "search results.")
+    )
 
-    body = StreamField([('chapter', Chapter())])
+    chapters = StreamField([('chapter', Chapter())])
 
     content_panels = Page.content_panels + [
-        FieldPanel('summary', classname="full"),
+        FieldPanel('summary'),
+        StreamFieldPanel('chapters'),
     ]
 
     parent_page_types = ['publish.PublishedWorkIndex']
