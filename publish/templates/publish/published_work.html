@@ -7,7 +7,7 @@
 {% block body_class %}homepage{% endblock %}
 
 {% block content %}
-{{ page.specific.body|richtext }}
+{{ page.body|richtext }}
 <section>
   <header><h2>New News</h2></header>
   {% get_news_index as index %}
