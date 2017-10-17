@@ -1,23 +1,11 @@
 {% extends "base.html" %}
 
-{% load wagtailcore_tags news %}
+{% load wagtailcore_tags %}
 
-{% block title %}Amber Herbert{% endblock %}
-{% block title_suffix %}{% endblock %}
-{% block body_class %}homepage{% endblock %}
+{% block body_class %}published-works{% endblock %}
 
 {% block content %}
-{{ page.specific.body|richtext }}
+{{ page.body|richtext }}
 <section>
-  <header><h2>New News</h2></header>
-  {% get_news_index as index %}
-  {% for item in index.get_newsitems.live|slice:":10" %}
-  <article>
-    <header>
-      <h2><a href="{{ item.url }}">{{ item.title }}</a></h2>
-    </header>
-    {{ item.body|richtext }}
-  </article>
-  {% endfor %}
 </section>
 {% endblock %}

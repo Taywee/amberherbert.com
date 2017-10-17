@@ -25,11 +25,9 @@
   <link rel="stylesheet" type="text/css" href="{% static 'css/amber.css' %}">
 <style>
 {% get_home_page as home_page %}
-{% with home=home_page.specific %}
 #banner {
-  background: url({{ home.banner_image.file.url }}) no-repeat center/cover;
+  background: url({{ home_page.banner_image.file.url }}) no-repeat center/cover;
 }
-{% endwith %}
 </style>
 
   {% block extra_css %}
@@ -41,30 +39,26 @@
   {% block header %}
   <header>
     {% get_home_page as home_page %}
-    {% with home=home_page.specific %}
     <div id="banner">
       {# image home.banner_image fill-800x250 #}
-      {% if home.banner_text %}
-      <h1><a href="{% pageurl home %}">{{ home.banner_text }}</a></h1>
+      {% if home_page.banner_text %}
+      <h1><a href="{% pageurl home_page %}">{{ home_page.banner_text }}</a></h1>
       {% endif %}
     </div>
-    {% endwith %}
   </header>
   {% endblock %}
 
   {% block menu %}
   {% get_home_page as home_page %}
-  {% with home=home_page.specific %}
   <nav>
     <ul>
-      {% for item in home.navigation %}
+      {% for item in home_page.navigation %}
       <li>
         {% include_block item %}
       </li>
       {% endfor %}
     </ul>
   </nav>
-  {% endwith %}
   {% endblock %}
   <div id="content">
     {% block content %}{% endblock %}
