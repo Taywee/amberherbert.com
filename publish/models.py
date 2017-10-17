@@ -1,22 +1,16 @@
 from django.db import models
 
-from wagtail.wagtailcore.models import Page
-from wagtail.wagtailcore.fields import RichTextField, StreamField
+from modelcluster.contrib.taggit import ClusterTaggableManager
+from modelcluster.fields import ParentalKey
+from taggit.models import TaggedItemBase
 from wagtail.wagtailadmin.edit_handlers import FieldPanel, StreamFieldPanel
+from wagtail.wagtailcore.fields import RichTextField, StreamField
+from wagtail.wagtailcore.models import Page
 
 from .blocks import Chapter
 
-class PublishedWorkIndex(Page):
-    '''An index page for published works.  Has a small body, but mostly acts as
-    a cataloguing platform, allowing searching for works underneath it.'''
-
-    body = RichTextField(blank=True)
-
-    content_panels = Page.content_panels + [
-        FieldPanel('body', classname="full"),
-    ]
-
-    subpage_types = ['publish.PublishedWork']
+class PublishedWorkTag(TaggedItemBase):
+    content_object = ParentalKey('publish.PublishedWork', related_name='tagged_items')
 
 class PublishedWork(Page):
     '''A type for online-published works.  This type should be properly
@@ -36,11 +30,59 @@ class PublishedWork(Page):
             "search results.")
     )
 
+    tags = ClusterTaggableManager(through=PublishedWorkTag, blank=True)
+
     chapters = StreamField([('chapter', Chapter())])
+
+    generate_navigation = models.BooleanField(
+        verbose_name="Generate a navigation menu",
+        default=True,
+        help_text=(
+            "This determines whether a navigation menu for chapters will be "
+            "generated for this page")
+    )
 
     content_panels = Page.content_panels + [
         FieldPanel('summary'),
+        FieldPanel('tags'),
         StreamFieldPanel('chapters'),
+        FieldPanel('generate_navigation'),
     ]
 
     parent_page_types = ['publish.PublishedWorkIndex']
+
+class PublishedWorkIndex(Page):
+    '''An index page for published works.  Has a small body, but mostly acts as
+    a cataloguing platform, allowing searching for works underneath it.'''
+
+    body = RichTextField(blank=True)
+
+    content_panels = Page.content_panels + [
+        FieldPanel('body', classname="full"),
+    ]
+
+    subpage_types = ['publish.PublishedWork']
+
+    def get_context(self, request):
+        tags = request.GET.get('tags')
+        # Can not use get_children, as they need to be filterable by tag
+        pages = PublishedWork.objects.child_of(self)
+        if tags:
+            tags = frozenset(tags.split(','))
+            # Iteratively filter for all tags
+            for tag in tags:
+                pages = pages.filter(tags__name=tag)
+        else:
+            tags = frozenset()
+
+        alltags = frozenset(
+            tag.tag.name for tag in PublishedWorkTag.objects.filter(
+                content_object__in=PublishedWork.objects.child_of(self)))
+
+        context = super().get_context(request)
+        context['pages'] = pages
+        context['alltags'] = alltags
+        context['selectedtags'] = tags
+        context['unselectedtags'] = alltags - tags
+        return context
+

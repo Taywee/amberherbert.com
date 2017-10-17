@@ -1,11 +1,38 @@
 {% extends "base.html" %}
 
-{% load wagtailcore_tags %}
+{% load wagtailcore_tags publish %}
 
 {% block body_class %}published-works{% endblock %}
 
 {% block content %}
 {{ page.body|richtext }}
+{% if selectedtags %}
+<div class="tags">
+  <h3>Currently Selected Tags</h3>
+  <p>Click to deselect, or <a href="{% pageurl page %}">click here to clear all tags</a></p>
+  {% for tag in selectedtags %}
+  <a href="{% pageurl page %}?tags={% tag_list selectedtags remove=tag %}"><button type="button">{{ tag }}</button></a>
+  {% endfor %}
+</div>
+{% endif %}
+{% if unselectedtags %}
+<div class="tags">
+  <h3>Tags</h3>
+  <p>Click to filter items.  You may select multiple.</p>
+  {% for tag in unselectedtags %}
+  <a href="{% pageurl page %}?tags={% tag_list selectedtags add=tag %}"><button type="button">{{ tag }}</button></a>
+  {% endfor %}
+</div>
+{% endif %}
 <section>
+  <h1>{{ page.title }}</h1>
+  <ul>
+  {% for work in pages %}
+  <li>
+    <a href="{% pageurl work %}">{{ work.title }}</a>
+    <aside class="summary">{{ work.summary }}</aside>
+  </li>
+  {% endfor %}
+  </ul>
 </section>
 {% endblock %}

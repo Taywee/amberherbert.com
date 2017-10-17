@@ -40,7 +40,6 @@
   <header>
     {% get_home_page as home_page %}
     <div id="banner">
-      {# image home.banner_image fill-800x250 #}
       {% if home_page.banner_text %}
       <h1><a href="{% pageurl home_page %}">{{ home_page.banner_text }}</a></h1>
       {% endif %}
@@ -50,7 +49,7 @@
 
   {% block menu %}
   {% get_home_page as home_page %}
-  <nav>
+  <nav class="site">
     <ul>
       {% for item in home_page.navigation %}
       <li>

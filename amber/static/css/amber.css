@@ -42,38 +42,32 @@ a img {
     border: none;
 }
 
-.image
-{
+.image {
     display: inline-block;
 }
 
-.image img
-{
+.image img {
     display: block;
     width: 100%;
 }
 
-.image-full
-{
+.image-full {
     display: block;
     width: 100%;
     margin: 0 0 2em 0;
 }
 
-.image-left
-{
+.image-left {
     float: left;
     margin: 0 2em 2em 0;
 }
 
-.image-centered
-{
+.image-centered {
     display: block;
     margin: 0 0 2em 0;
 }
 
-.image-centered img
-{
+.image-centered img {
     margin: 0 auto;
     width: auto;
 }
@@ -82,81 +76,61 @@ hr {
     display: none;
 }
 
-
-/*********************************************************************************/
-/* List Styles                                                                   */
-/*********************************************************************************/
-
-ul.style1
-{
+ul.style1 {
     margin: 0;
     padding: 0;
     list-style: none;
 }
 
-ul.style1 li
-{
+ul.style1 li {
     border-top: solid 1px #E5E5E5;
     padding: 0.80em 0;
 }
 
-ul.style1 li:first-child
-{
+ul.style1 li:first-child {
     border-top: 0;
     padding-top: 0;
 }
 
-ul.style2
-{
+ul.style2 {
     margin: 0;
     padding: 0;
     list-style: none;
 }
 
-ul.style2 li
-{
+ul.style2 li {
     border-top: solid 1px #E5E5E5;
     padding: 0.80em 0;
 }
 
-ul.style2 li:first-child
-{
+ul.style2 li:first-child {
     border-top: 0;
     padding-top: 0;
 }
 
-/*********************************************************************************/
-/* Social Icon Styles                                                            */
-/*********************************************************************************/
-
-ul.contact
-{
+ul.contact {
     margin: 0;
     padding: 1.5em 0em 2.5em 0em;
     list-style: none;
 }
 
-ul.contact li
-{
+ul.contact li {
     display: inline-block;
     padding: 0em 0.30em;
     font-size: 1em;
 }
 
-ul.contact li span
-{
+ul.contact li span {
     display: none;
     margin: 0;
     padding: 0;
 }
 
-ul.contact li a
-{
+ul.contact li a {
     color: #FFF;
 }
 
-ul.contact li a:before
-{
+ul.contact li a:before {
     display: inline-block;
     background: #3f3f3f;
     width: 40px;
@@ -167,32 +141,18 @@ ul.contact li a:before
     color: #FFFFFF;
 }
 
-ul.contact li a.icon-twitter:before { background: #2DAAE4; }
-ul.contact li a.icon-facebook:before { background: #39599F; }
-ul.contact li a.icon-dribbble:before { background: #C4376B;	}
-ul.contact li a.icon-tumblr:before { background: #31516A; }
-ul.contact li a.icon-rss:before { background: #F2600B; }
-
-
-/*********************************************************************************/
-/* Heading Titles                                                                */
-/*********************************************************************************/
-
-.title
-{
+.title {
     margin-bottom: 2em;
     text-transform: uppercase;
 }
 
-.title h2
-{
+.title h2 {
     font-weight: 400;
     font-size: 2em;
     color: #B10058;
 }
 
-.title .byline
-{
+.title .byline {
     letter-spacing: 0.15em;
     text-transform: uppercase;
     font-weight: 400;
@@ -200,10 +160,7 @@ ul.contact li a.icon-rss:before { background: #F2600B; }
     color: #6F6F6F;
 }
 
-/** WRAPPER */
-
-#footer-wrapper
-{
+#footer-wrapper {
     background: #0F0F0F;
 }
 
@@ -217,12 +174,7 @@ ul.contact li a.icon-rss:before { background: #F2600B; }
 }
 
 
-/*********************************************************************************/
-/* Wrappers                                                                      */
-/*********************************************************************************/
-
-#header-wrapper
-{
+#header-wrapper {
     overflow: hidden;
     background-size: 100%;
     padding: 6em 0em 2em 0em;
@@ -230,23 +182,13 @@ ul.contact li a.icon-rss:before { background: #F2600B; }
 }
 
 
-/*********************************************************************************/
-/* Header                                                                        */
-/*********************************************************************************/
-
-#header 
-{
+#header {
     position: relative;
     overflow: hidden;
     text-align: center;
 }
 
-/*********************************************************************************/
-/* Logo                                                                          */
-/*********************************************************************************/
-
-#logo 
-{
+#logo {
     width: 500px;
     height: 100px;
     margin: 0 auto;
@@ -254,37 +196,27 @@ ul.contact li a.icon-rss:before { background: #F2600B; }
     text-transform: uppercase;
 }
 
-#logo h1
-{
+#logo h1 {
     letter-spacing: 0.10em;
     font-size: 3em;
 }
 
-#logo p 
-{
+#logo p {
     letter-spacing: 0.10em;
     color: #FFF;
 }
 
-#logo a 
-{
+#logo a {
     text-decoration: none;
     color: #FFF;
 }
 
-/*********************************************************************************/
-/* Banner                                                                        */
-/*********************************************************************************/
-
-#banner 
-{
+#banner {
     overflow: hidden;
     height: 15em;
 }
 
-/** MENU */
-
-nav {
+nav.site {
     background: #888888;
     overflow: hidden;
     height: 3em;
@@ -292,7 +224,7 @@ nav {
     margin-bottom: 2em;
 }
 
-nav ul {
+nav.site ul {
     margin: 0;
     padding: 0px 0px 0px 0px;
     list-style: none;
@@ -300,11 +232,11 @@ nav ul {
     text-align: center;
 }
 
-nav li {
+nav.site li {
     display: inline-block;
 }
 
-nav a {
+nav.site a {
     display: block;
     letter-spacing: 1px;
     padding: 0px 40px;
@@ -317,11 +249,11 @@ nav a {
     color: #FFF;
 }
 
-nav a:hover, #menu .current_page_item a {
+nav.site a:hover, #menu .current_page_item a {
     text-decoration: none;
 }
 
-nav .current_page_item a {
+nav.site .current_page_item a {
     background: #C0005F;
 }
 
@@ -334,49 +266,32 @@ nav .current_page_item a {
     padding: 6em 0em 5em 0em;
 }
 
-/** CONTENT */
-
-#content
-{
+#content {
     width: 790px;
     text-align: left;
     display: inline-block;
 }
 
-/*********************************************************************************/
-/* Sidebar                                                                       */
-/*********************************************************************************/
-
-#sidebar
-{
+#sidebar {
     float: left;
     width: 345px;
 }
 
-#sidebar .title h2
-{
+#sidebar .title h2 {
     font-size: 1.6em;
 }
 
-#sidebar .box1
-{
+#sidebar .box1 {
     margin-bottom: 3em;
 }
 
-
-/*********************************************************************************/
-/* Copyright                                                                     */
-/*********************************************************************************/
-
-#copyright
-{
+#copyright {
     overflow: hidden;
     padding: 5em 0em;
     text-align: center;
 }
 
-#copyright p
-{
+#copyright p {
     letter-spacing: 0.20em;
     text-align: center;
     text-transform: uppercase;
@@ -384,38 +299,29 @@ nav .current_page_item a {
     color: rgba(255,255,255,.5);
 }
 
-#copyright a
-{
+#copyright a {
     text-decoration: none;
     color: rgba(255,255,255,.7);
 }
 
-/*********************************************************************************/
-/* Welcome                                                                       */
-/*********************************************************************************/
-
-#welcome
-{
+#welcome {
     overflow: hidden;
     padding: 5em 0em;
     border-bottom: 1px solid #E5E5E5;
     text-align: center;
 }
 
-#welcome h2
-{
+#welcome h2 {
     letter-spacing: 0.20em;
     text-transform: uppercase;
     font-size: 2.6em;
 }
 
-#welcome p
-{
+#welcome p {
     font-size: 1.3em;
 }
 
-#welcome .byline
-{
+#welcome .byline {
     display: block;
     padding: 0em 0em 1.5em 0em;
     letter-spacing: 0.15em;
@@ -425,65 +331,44 @@ nav .current_page_item a {
     color: #6F6F6F;
 }
 
-/*********************************************************************************/
-/* Portfolio                                                                     */
-/*********************************************************************************/
-
-#portfolio-wrapper
-{
+#portfolio-wrapper {
     background: rgba(0,0,0,.04);
     padding: 6em 0em;
     color: rgba(255,255,255,.7);
 }
 
-#portfolio
-{
+#portfolio {
     overflow: hidden;
 }
 
-#portfolio .title h2
-{
+#portfolio .title h2 {
     font-size: 1.2em;
     color: #FFF;
 }
 
-#portfolio .byline
-{
+#portfolio .byline {
     font-size: 1em;
     color: #EEA7C1;
 }
 
-#column1,
-#column2,
-#column3,
-#column4
-{
+#column1, #column2, #column3, #column4 {
     width: 282px;
 }
 
-#column1,
-#column2
-{
+#column1, #column2 {
     float: left;
     margin-right: 24px;
 }
 
-#column3
-{
+#column3 {
     float: left;
 }
 
-#column4
-{
+#column4 {
     float: right;
 }
 
-/*********************************************************************************/
-/* Button Style                                                                  */
-/*********************************************************************************/
-
-.button
-{
+.button {
     display: inline-block;
     margin-top: 1.5em;
     padding: 0.50em 3em 0.50em 2em;
@@ -496,8 +381,7 @@ nav .current_page_item a {
     color: #FFF;
 }
 
-.button:before
-{
+.button:before {
     display: inline-block;
     width: 40px;
     height: 40px;
@@ -507,71 +391,61 @@ nav .current_page_item a {
     color: #FFF;
 }
 
-/*********************************************************************************/
-/* Footer                                                                        */
-/*********************************************************************************/
-
-#footer-wrapper
-{
+#footer-wrapper {
     overflow: hidden;
     padding: 5em 0em;
     background: #1E1B1A;
 }
 
-#footer
-{
+#footer {
     color: #ADADAD;
 }
 
-#footer .title h2
-{
+#footer .title h2 {
     font-weight: 400;
     font-size: 1.2em;
     color: #FFF;
 }
 
-#footer .title
-{
+#footer .title {
     border-color: #2D2926 !important;
 }
 
-#footer .style1 li
-{
+#footer .style1 li {
     border-color: #2D2926 !important;
 }
 
-#footer .style1 a
-{
+#footer .style1 a {
     font-size:1em;
     color: #B1B1B1;
 }
 
-#box1
-{
+#box1 {
     float: left;
     width: 354px;
     margin-right: 24px;
     padding-right: 30px;
 }
 
-#box2
-{
+#box2 {
     float: left;
     width: 354px;
     margin-left: 24px;
     padding-right: 30px;
 }
 
-#box3
-{
+#box3 {
     float: right;
     width: 344px;
     padding-left: 40px;
 }
 
-footer
-{
+footer {
     margin-top: 5em;
     margin-right: 2em;
     margin-left: 2em;
+}
+
+aside.summary {
+    font-style: italic;
 }

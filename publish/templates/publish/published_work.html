@@ -1,23 +1,34 @@
 {% extends "base.html" %}
 
-{% load wagtailcore_tags news %}
+{% load wagtailcore_tags %}
 
-{% block title %}Amber Herbert{% endblock %}
-{% block title_suffix %}{% endblock %}
-{% block body_class %}homepage{% endblock %}
+{% block body_class %}publishedwork{% endblock %}
 
 {% block content %}
-{{ page.body|richtext }}
-<section>
-  <header><h2>New News</h2></header>
-  {% get_news_index as index %}
-  {% for item in index.get_newsitems.live|slice:":10" %}
-  <article>
-    <header>
-      <h2><a href="{{ item.url }}">{{ item.title }}</a></h2>
-    </header>
-    {{ item.body|richtext }}
-  </article>
+<aside class="summary">{{ page.summary }}</aside>
+{% if page.generate_navigation %}
+<nav>
+  <ul>
+    {% for chapter in page.chapters %}
+    {% include_block chapter with nav=True %}
+    {% endfor %}
+  </ul>
+</nav>
+{% endif %}
+<article>
+  <header><h1>{{ page.title }}</h1></header>
+  <div class="content">
+    {% for chapter in page.chapters %}
+    {% include_block chapter %}
+    {% endfor %}
+  </div>
+</article>
+{% if page.tags.all.count %}
+<div class="tags">
+  <h3>Tags</h3>
+  {% for tag in page.tags.all %}
+  <a href="{% pageurl page.get_parent %}?tags={{ tag }}"><button type="button">{{ tag }}</button></a>
   {% endfor %}
-</section>
+</div>
+{% endif %}
 {% endblock %}
