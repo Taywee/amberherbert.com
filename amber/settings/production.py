@@ -24,19 +24,42 @@ DATABASES = {
 
 LOGGING = {
     'version': 1,
-    'disable_existing_loggers': False,
     'handlers': {
-        'file': {
+        'log': {
             'level': 'WARNING',
             'class': 'logging.FileHandler',
             'filename': '/var/log/amberherbert/log',
         },
+        'request': {
+            'level': 'WARNING',
+            'class': 'logging.FileHandler',
+            'filename': '/var/log/amberherbert/request',
+        },
+        'django': {
+            'level': 'WARNING',
+            'class': 'logging.FileHandler',
+            'filename': '/var/log/amberherbert/django',
+        },
+    },
+    'loggers': {
+        # Again, default Django configuration to email unhandled exceptions
+        'django.request': {
+            'handlers': ['request'],
+            'level': 'WARNING',
+            'propagate': True,
+        },
+        # Might as well log any errors anywhere else in Django
+        'django': {
+            'handlers': ['django'],
+            'level': 'WARNING',
+            'propagate': False,
+        },
     },
     'root': {
-        'handlers': ['file'],
+        'handlers': ['log'],
         'level': 'WARNING',
         'propagate': True,
-    }
+    },
 }
 STATIC_ROOT = '/var/lib/www/static'
 MEDIA_ROOT = '/var/lib/www/media'
