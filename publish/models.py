@@ -22,6 +22,8 @@ class PublishedWork(Page):
     and named titles shouldn't be mandatory, but even without named titles, we
     want to be able to link to the chapter.'''
 
+    is_creatable = False
+
     summary = models.TextField(
         blank=True,
         null=True,
@@ -32,7 +34,36 @@ class PublishedWork(Page):
 
     tags = ClusterTaggableManager(through=PublishedWorkTag, blank=True)
 
-    chapters = StreamField([('chapter', Chapter())])
+    content_panels = Page.content_panels + [
+        FieldPanel('summary'),
+        FieldPanel('tags'),
+    ]
+
+    parent_page_types = ['publish.PublishedWorkIndex']
+
+
+class Poem(PublishedWork):
+    '''A poetry-specific published work.'''
+
+    body = RichTextField()
+
+    content_panels = PublishedWork.content_panels + [
+        FieldPanel('body'),
+    ]
+
+class ShortStory(PublishedWork):
+    '''A short story published work.'''
+
+    body = RichTextField()
+
+    content_panels = PublishedWork.content_panels + [
+        FieldPanel('body'),
+    ]
+
+class LongStory(PublishedWork):
+    '''A long story (chapter-broken) published work.'''
+
+    body = StreamField([('chapter', Chapter())])
 
     generate_navigation = models.BooleanField(
         verbose_name="Generate a navigation menu",
@@ -42,14 +73,10 @@ class PublishedWork(Page):
             "generated for this page")
     )
 
-    content_panels = Page.content_panels + [
-        FieldPanel('summary'),
-        FieldPanel('tags'),
-        StreamFieldPanel('chapters'),
+    content_panels = PublishedWork.content_panels + [
+        StreamFieldPanel('body'),
         FieldPanel('generate_navigation'),
     ]
-
-    parent_page_types = ['publish.PublishedWorkIndex']
 
 class PublishedWorkIndex(Page):
     '''An index page for published works.  Has a small body, but mostly acts as
@@ -61,7 +88,11 @@ class PublishedWorkIndex(Page):
         FieldPanel('body', classname="full"),
     ]
 
-    subpage_types = ['publish.PublishedWork']
+    subpage_types = [
+        Poem,
+        ShortStory,
+        LongStory,
+    ]
 
     def get_context(self, request):
         tags = request.GET.get('tags')

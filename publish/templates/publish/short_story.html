@@ -1,0 +1,9 @@
+{% extends "publish/published_work.html" %}
+
+{% load wagtailcore_tags %}
+
+{% block body_class %}published-work short-story{% endblock %}
+
+{% block body %}
+{{ page.body|richtext }}
+{% endblock %}

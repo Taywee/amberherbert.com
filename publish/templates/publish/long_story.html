@@ -1,0 +1,22 @@
+{% extends "publish/published_work.html" %}
+
+{% load wagtailcore_tags %}
+
+{% block body_class %}published-work long-story{% endblock %}
+
+{% block work_navigation %}
+{% if page.generate_navigation %}
+<nav>
+  <ul>
+    {% for chapter in page.body %}
+    {% include_block chapter with nav=True %}
+    {% endfor %}
+  </ul>
+</nav>
+{% endif %}
+{% endblock %}
+{% block body %}
+{% for chapter in page.body %}
+{% include_block chapter %}
+{% endfor %}
+{% endblock %}

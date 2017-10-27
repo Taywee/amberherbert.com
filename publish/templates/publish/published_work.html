@@ -2,25 +2,17 @@
 
 {% load wagtailcore_tags %}
 
-{% block body_class %}publishedwork{% endblock %}
+{% block body_class %}published-work{% endblock %}
 
 {% block content %}
 <aside class="summary">{{ page.summary }}</aside>
-{% if page.generate_navigation %}
-<nav>
-  <ul>
-    {% for chapter in page.chapters %}
-    {% include_block chapter with nav=True %}
-    {% endfor %}
-  </ul>
-</nav>
-{% endif %}
+{% block work_navigation %}
+{% endblock %}
 <article>
   <header><h1>{{ page.title }}</h1></header>
   <div class="content">
-    {% for chapter in page.chapters %}
-    {% include_block chapter %}
-    {% endfor %}
+    {% block body %}
+    {% endblock %}
   </div>
 </article>
 {% if page.tags.all.count %}
