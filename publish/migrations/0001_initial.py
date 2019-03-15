@@ -6,8 +6,8 @@ from django.db import migrations, models
 import django.db.models.deletion
 import modelcluster.contrib.taggit
 import modelcluster.fields
-import wagtail.wagtailcore.blocks
-import wagtail.wagtailcore.fields
+import wagtail.core.blocks
+import wagtail.core.fields
 
 
 class Migration(migrations.Migration):
@@ -35,7 +35,7 @@ class Migration(migrations.Migration):
             name='PublishedWorkIndex',
             fields=[
                 ('page_ptr', models.OneToOneField(auto_created=True, on_delete=django.db.models.deletion.CASCADE, parent_link=True, primary_key=True, serialize=False, to='wagtailcore.Page')),
-                ('body', wagtail.wagtailcore.fields.RichTextField(blank=True)),
+                ('body', wagtail.core.fields.RichTextField(blank=True)),
             ],
             options={
                 'abstract': False,
@@ -55,7 +55,7 @@ class Migration(migrations.Migration):
             name='LongStory',
             fields=[
                 ('publishedwork_ptr', models.OneToOneField(auto_created=True, on_delete=django.db.models.deletion.CASCADE, parent_link=True, primary_key=True, serialize=False, to='publish.PublishedWork')),
-                ('body', wagtail.wagtailcore.fields.StreamField((('chapter', wagtail.wagtailcore.blocks.StructBlock((('title', wagtail.wagtailcore.blocks.CharBlock(required=False)), ('text', wagtail.wagtailcore.blocks.RichTextBlock(required=True))))),))),
+                ('body', wagtail.core.fields.StreamField((('chapter', wagtail.core.blocks.StructBlock((('title', wagtail.core.blocks.CharBlock(required=False)), ('text', wagtail.core.blocks.RichTextBlock(required=True))))),))),
                 ('generate_navigation', models.BooleanField(default=True, help_text='This determines whether a navigation menu for chapters will be generated for this page', verbose_name='Generate a navigation menu')),
             ],
             options={
@@ -67,7 +67,7 @@ class Migration(migrations.Migration):
             name='Poem',
             fields=[
                 ('publishedwork_ptr', models.OneToOneField(auto_created=True, on_delete=django.db.models.deletion.CASCADE, parent_link=True, primary_key=True, serialize=False, to='publish.PublishedWork')),
-                ('body', wagtail.wagtailcore.fields.RichTextField()),
+                ('body', wagtail.core.fields.RichTextField()),
             ],
             options={
                 'abstract': False,
@@ -78,7 +78,7 @@ class Migration(migrations.Migration):
             name='ShortStory',
             fields=[
                 ('publishedwork_ptr', models.OneToOneField(auto_created=True, on_delete=django.db.models.deletion.CASCADE, parent_link=True, primary_key=True, serialize=False, to='publish.PublishedWork')),
-                ('body', wagtail.wagtailcore.fields.RichTextField()),
+                ('body', wagtail.core.fields.RichTextField()),
             ],
             options={
                 'abstract': False,

@@ -6,8 +6,8 @@ from django.conf import settings
 from django.db import migrations, models
 import django.db.models.deletion
 import django.utils.timezone
-import wagtail.wagtailcore.fields
-import wagtail.wagtailsearch.index
+import wagtail.core.fields
+import wagtail.search.index
 import wagtailnews.models
 
 
@@ -36,14 +36,14 @@ class Migration(migrations.Migration):
                 ('live', models.BooleanField(default=True, editable=False, verbose_name='Live')),
                 ('has_unpublished_changes', models.BooleanField(default=False, editable=False, verbose_name='Has unpublished changes')),
                 ('title', models.CharField(max_length=255)),
-                ('body', wagtail.wagtailcore.fields.RichTextField()),
+                ('body', wagtail.core.fields.RichTextField()),
                 ('newsindex', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='wagtailcore.Page')),
             ],
             options={
                 'abstract': False,
                 'ordering': ('-date',),
             },
-            bases=(wagtail.wagtailsearch.index.Indexed, models.Model),
+            bases=(wagtail.search.index.Indexed, models.Model),
         ),
         migrations.CreateModel(
             name='NewsItemRevision',

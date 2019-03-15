@@ -1,4 +1,4 @@
-from wagtail.wagtailcore import blocks
+from wagtail.core import blocks
 
 class Question(blocks.StructBlock):
     question = blocks.CharBlock(required=True)

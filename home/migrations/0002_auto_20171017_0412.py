@@ -3,8 +3,8 @@
 from __future__ import unicode_literals
 
 from django.db import migrations
-import wagtail.wagtailcore.blocks
-import wagtail.wagtailcore.fields
+import wagtail.core.blocks
+import wagtail.core.fields
 
 
 class Migration(migrations.Migration):
@@ -17,6 +17,6 @@ class Migration(migrations.Migration):
         migrations.AlterField(
             model_name='homepage',
             name='navigation',
-            field=wagtail.wagtailcore.fields.StreamField((('item', wagtail.wagtailcore.blocks.StructBlock((('text', wagtail.wagtailcore.blocks.CharBlock(help_text='If this is left blank, the title of the linked page will be used instead', max_length=16, required=False)), ('page', wagtail.wagtailcore.blocks.PageChooserBlock(required=True))))),), blank=True, help_text='The list of navigation items', null=True),
+            field=wagtail.core.fields.StreamField((('item', wagtail.core.blocks.StructBlock((('text', wagtail.core.blocks.CharBlock(help_text='If this is left blank, the title of the linked page will be used instead', max_length=16, required=False)), ('page', wagtail.core.blocks.PageChooserBlock(required=True))))),), blank=True, help_text='The list of navigation items', null=True),
         ),
     ]

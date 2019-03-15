@@ -1,8 +1,8 @@
 from django.db import models
 
-from wagtail.wagtailcore.models import Page
-from wagtail.wagtailcore.fields import RichTextField
-from wagtail.wagtailadmin.edit_handlers import FieldPanel
+from wagtail.core.models import Page
+from wagtail.core.fields import RichTextField
+from wagtail.admin.edit_handlers import FieldPanel
 
 from wagtailnews.models import NewsIndexMixin, AbstractNewsItem, AbstractNewsItemRevision
 from wagtailnews.decorators import newsindex
@@ -20,7 +20,7 @@ class NewsItem(AbstractNewsItem):
         return self.title
 
 class NewsItemRevision(AbstractNewsItemRevision):
-    newsitem = models.ForeignKey(NewsItem, related_name='revisions')
+    newsitem = models.ForeignKey(NewsItem, related_name='revisions', on_delete=models.CASCADE)
 
 @newsindex
 class NewsIndex(NewsIndexMixin, Page):

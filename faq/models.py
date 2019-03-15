@@ -1,7 +1,7 @@
-from wagtail.wagtailadmin.edit_handlers import StreamFieldPanel
-from wagtail.wagtailcore.blocks import CharBlock, ListBlock, StructBlock
-from wagtail.wagtailcore.fields import StreamField
-from wagtail.wagtailcore.models import Page
+from wagtail.admin.edit_handlers import StreamFieldPanel
+from wagtail.core.blocks import CharBlock, ListBlock, StructBlock
+from wagtail.core.fields import StreamField
+from wagtail.core.models import Page
 
 from .blocks import Category
 

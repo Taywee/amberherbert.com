@@ -1,6 +1,6 @@
 from copy import copy
 from django import template
-from wagtail.wagtailcore.models import Page
+from wagtail.core.models import Page
 
 from home.models import HomePage
 

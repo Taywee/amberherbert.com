@@ -4,8 +4,8 @@ from __future__ import unicode_literals
 
 from django.db import migrations, models
 import django.db.models.deletion
-import wagtail.wagtailcore.blocks
-import wagtail.wagtailcore.fields
+import wagtail.core.blocks
+import wagtail.core.fields
 
 
 class Migration(migrations.Migration):
@@ -21,7 +21,7 @@ class Migration(migrations.Migration):
             name='FAQIndex',
             fields=[
                 ('page_ptr', models.OneToOneField(auto_created=True, on_delete=django.db.models.deletion.CASCADE, parent_link=True, primary_key=True, serialize=False, to='wagtailcore.Page')),
-                ('body', wagtail.wagtailcore.fields.StreamField((('category', wagtail.wagtailcore.blocks.StructBlock((('name', wagtail.wagtailcore.blocks.CharBlock(required=True)), ('questions', wagtail.wagtailcore.blocks.ListBlock(wagtail.wagtailcore.blocks.StructBlock((('question', wagtail.wagtailcore.blocks.CharBlock(required=True)), ('answer', wagtail.wagtailcore.blocks.CharBlock(required=True))))))))),), blank=True, null=True)),
+                ('body', wagtail.core.fields.StreamField((('category', wagtail.core.blocks.StructBlock((('name', wagtail.core.blocks.CharBlock(required=True)), ('questions', wagtail.core.blocks.ListBlock(wagtail.core.blocks.StructBlock((('question', wagtail.core.blocks.CharBlock(required=True)), ('answer', wagtail.core.blocks.CharBlock(required=True))))))))),), blank=True, null=True)),
             ],
             options={
                 'abstract': False,

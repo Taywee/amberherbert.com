@@ -4,8 +4,8 @@ from __future__ import unicode_literals
 
 from django.db import migrations, models
 import django.db.models.deletion
-import wagtail.wagtailcore.blocks
-import wagtail.wagtailcore.fields
+import wagtail.core.blocks
+import wagtail.core.fields
 
 
 class Migration(migrations.Migration):
@@ -22,9 +22,9 @@ class Migration(migrations.Migration):
             name='HomePage',
             fields=[
                 ('page_ptr', models.OneToOneField(auto_created=True, on_delete=django.db.models.deletion.CASCADE, parent_link=True, primary_key=True, serialize=False, to='wagtailcore.Page')),
-                ('body', wagtail.wagtailcore.fields.RichTextField(blank=True)),
+                ('body', wagtail.core.fields.RichTextField(blank=True)),
                 ('banner_text', models.CharField(blank=True, default='Amber Herbert', help_text='This is the text that is displayed with the banner image', max_length=64, null=True)),
-                ('navigation', wagtail.wagtailcore.fields.StreamField((('item', wagtail.wagtailcore.blocks.StructBlock((('text', wagtail.wagtailcore.blocks.CharBlock(max_length=16, min_length=2, required=True)), ('page', wagtail.wagtailcore.blocks.PageChooserBlock(required=True))))),), blank=True, help_text='The list of navigation items', null=True)),
+                ('navigation', wagtail.core.fields.StreamField((('item', wagtail.core.blocks.StructBlock((('text', wagtail.core.blocks.CharBlock(max_length=16, min_length=2, required=True)), ('page', wagtail.core.blocks.PageChooserBlock(required=True))))),), blank=True, help_text='The list of navigation items', null=True)),
                 ('banner_image', models.ForeignKey(blank=True, null=True, on_delete=django.db.models.deletion.SET_NULL, related_name='+', to='wagtailimages.Image')),
             ],
             options={

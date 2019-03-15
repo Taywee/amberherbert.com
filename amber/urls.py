@@ -4,9 +4,9 @@ from django.conf import settings
 from django.conf.urls import include, url
 from django.contrib import admin
 
-from wagtail.wagtailadmin import urls as wagtailadmin_urls
-from wagtail.wagtailcore import urls as wagtail_urls
-from wagtail.wagtaildocs import urls as wagtaildocs_urls
+from wagtail.admin import urls as wagtailadmin_urls
+from wagtail.core import urls as wagtail_urls
+from wagtail.documents import urls as wagtaildocs_urls
 
 from search import views as search_views
 
@@ -23,7 +23,7 @@ except FileNotFoundError:
     wtadmin = r'^admin/'
 
 urlpatterns = [
-    url(djadmin, include(admin.site.urls)),
+    url(djadmin, admin.site.urls),
 
     url(wtadmin, include(wagtailadmin_urls)),
     url(r'^documents/', include(wagtaildocs_urls)),
