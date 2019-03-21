@@ -75,14 +75,13 @@ a img {
 }
 
 nav.site {
-    background: #888888;
     overflow: hidden;
     font-size: 2em;
-    border-radius: 0 0 0.25em 0.25em;
 }
 
 .siteheader {
-    border-radius: 1em;
+    background: #888888;
+    border-radius: 0.25em;
     margin-top: 2em;
     margin-bottom: 2em;
     box-shadow: 0.2em 0.2em 0.25em rgba(0, 0, 0, 0.5);
