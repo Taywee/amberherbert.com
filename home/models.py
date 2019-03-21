@@ -28,6 +28,13 @@ class HomePage(Page):
         blank=True,
         related_name='+')
 
+    background_image = models.ForeignKey(
+        Image,
+        on_delete=models.SET_NULL,
+        null=True,
+        blank=True,
+        related_name='+')
+
     navigation = StreamField(
         [('item', NavigationItem())],
         blank=True,
@@ -38,6 +45,7 @@ class HomePage(Page):
         MultiFieldPanel([
             FieldPanel('banner_text'),
             ImageChooserPanel('banner_image'),
+            ImageChooserPanel('background_image'),
         ], 'Banner'),
         StreamFieldPanel('navigation'),
         FieldPanel('body', classname="full"),

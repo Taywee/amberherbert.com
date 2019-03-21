@@ -22,11 +22,20 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
 
   {# Global stylesheets #}
+  <link rel="stylesheet" type="text/css" href="{% static 'css/bootstrap.min.css' %}">
   <link rel="stylesheet" type="text/css" href="{% static 'css/amber.css' %}">
 <style>
 {% get_home_page as home_page %}
-#banner {
+.banner {
+  {% if home_page.banner_image %}
   background: url({{ home_page.banner_image.file.url }}) no-repeat center/cover;
+  {% endif %}
+}
+
+body {
+  {% if home_page.background_image %}
+  background: url({{ home_page.background_image.file.url }}) repeat;
+  {% endif %}
 }
 </style>
 
@@ -36,33 +45,35 @@
 </head>
 
 <body class="{% block body_class %}{% endblock %}">
-  {% block header %}
-  <header>
-    {% get_home_page as home_page %}
-    <div id="banner">
-      {% if home_page.banner_text %}
-      <h1><a href="{% pageurl home_page %}">{{ home_page.banner_text }}</a></h1>
-      {% endif %}
+  <div class="container bottomlevel" >
+    {% block header %}
+    <header class="siteheader">
+      {% get_home_page as home_page %}
+      <div class="banner">
+        {% if home_page.banner_text %}
+        <h1><a href="{% pageurl home_page %}">{{ home_page.banner_text }}</a></h1>
+        {% endif %}
+      </div>
+      {% block menu %}
+      {% get_home_page as home_page %}
+      <nav class="site container">
+        <ul class="row">
+          {% for item in home_page.navigation %}
+          <li class="col navitem">
+            {% include_block item %}
+          </li>
+          {% endfor %}
+        </ul>
+      </nav>
+      {% endblock %}
+    </header>
+    {% endblock %}
+
+    <div class="content">
+      {% block content %}{% endblock %}
     </div>
-  </header>
-  {% block menu %}
-  {% get_home_page as home_page %}
-  <nav class="site">
-    <ul>
-      {% for item in home_page.navigation %}
-      <li>
-        {% include_block item %}
-      </li>
-      {% endfor %}
-    </ul>
-  </nav>
-  {% endblock %}
-  {% endblock %}
-
-  <div id="content">
-    {% block content %}{% endblock %}
-
     {% block footer %}
+
     <footer>
       <small>
         Site content copyright © 2017 Amber Herbert.  Site code copyright © 2017
@@ -73,15 +84,15 @@
       </small>
     </footer>
     {% endblock %}
+
+    {# Global javascript #}
+    <script type="text/javascript" src="{% static 'js/amber.js' %}"></script>
+
+    {% block extra_js %}
+    {# Override this in templates to add extra javascript #}
+    {% endblock %}
+
+    {% wagtailuserbar 'bottom-right' %}
   </div>
-
-  {# Global javascript #}
-  <script type="text/javascript" src="{% static 'js/amber.js' %}"></script>
-
-  {% block extra_js %}
-  {# Override this in templates to add extra javascript #}
-  {% endblock %}
-
-  {% wagtailuserbar 'bottom-right' %}
 </body>
 </html>
